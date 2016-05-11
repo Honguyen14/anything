@@ -2,7 +2,7 @@
 % Please edit documentation in R/chi.probability.R
 \name{chi.probability}
 \alias{chi.probability}
-\title{This is package}
+\title{This is a title.}
 \usage{
 chi.probability(x, df, n = 1)
 }
