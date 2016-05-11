@@ -1,12 +1,12 @@
 {
-    "contents" : "\n#' @title This is a title. \nchi.probability <- function(x, df, n=1){\n\n}\n",
+    "contents" : "\n#' @title This is a title.\nchi.probability <- function(x, df, n=1){\n\n}\n",
     "created" : 1462959651977.000,
-    "dirty" : true,
+    "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1683128799",
+    "hash" : "3597256693",
     "id" : "F851C49B",
-    "lastKnownWriteTime" : 1462960854,
+    "lastKnownWriteTime" : 1462961572,
     "path" : "~/R Code/anything/R/chi.probability.R",
     "project_path" : "R/chi.probability.R",
     "properties" : {

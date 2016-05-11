@@ -1,12 +1,12 @@
 {
     "contents" : "---\ntitle: \"README\"\nauthor: \"Nguyen\"\ndate: \"11. maj 2016\"\noutput: html_document\n---\n\nThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.\n\nWhen you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:\n\n```{r}\ninstall.packages(\"devtoops\")\ninstall.packages(\"roxygens2\")\nlibrary(\"devtools\")\n\ninstall.packages(Rtools)\n```\n\nYou can also embed plots, for example:\n\n```{r, echo=FALSE}\nplot(cars)\n```\n\nNote that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.\n",
     "created" : 1462960073634.000,
-    "dirty" : true,
+    "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
     "hash" : "1240838107",
     "id" : "CF2F4D2E",
-    "lastKnownWriteTime" : 1462960854,
+    "lastKnownWriteTime" : 1462961572,
     "path" : "~/R Code/anything/R/README.md",
     "project_path" : "R/README.md",
     "properties" : {

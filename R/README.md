@@ -14,7 +14,7 @@ install.packages("devtoops")
 install.packages("roxygens2")
 library("devtools")
 
-install
+install.packages(Rtools)
 ```
 
 You can also embed plots, for example:
