@@ -1,0 +1,18 @@
+{
+    "contents" : "\n#' @title Calculation the Chi Squared probability.\n#' @export\n#' @return returns the probability that the \\code{Chi} greater than \\code{x} (area under the distribution which is greated than \\code{x}).\n#' @usage chi.probability(x, df = 5, n = 1000, plot = FALSE)\n#' @keywords distribution chi Monte Carlo simulation Estimation\n#' @description \\code{chi.probability} computes the probability which the \\code{Chi} of a given degree of freedom is greater than a specified value \\code{x}.\n#' If \\code{x} is a vector, in which case the function will return a vector of probabilities of the components of \\code{x}. The \\code{plot} option if chosen to\n#' be TRUE, then a plot of the density function of the \\code{Chi Squared} with degree of freedom \\code{df} will be created.\n#' @param x specifies the value that should be evaluated in the Chi Square distribution.\n#' @param df degrees of freedom in the Chi Square distribution\n#' @param n number of random numbers for evaluating the distribution\n#' @param plot specifies whether a plot should be created or not\n#' @author Nguyen Khanh Le Ho \\cr\n#' @examples chi.probability(x= 5, df = 5, n = 1000, plot = TRUE)\n\n\nchi.probability <- function(x, df = 5, n = 1000,  plot = FALSE){\n\n  #----------------------------Error Handler-------------------------------#\n  if(!is.numeric(n) || n!= round(n) || n < 1 || length(n)>1){\n    stop(\"'n' must be a natural number\")\n  }\n  if(!is.logical(plot) || length(plot)>1){\n    stop(\"'plot' must be logical non-vector.\")\n  }\n  if(!is.numeric(df) || df!= round(df) || df < 1 || length(df)>1 ){\n    stop(\" df must be a natural number\")\n  }\n  if(!is.vector(x) ){\n    stop(\" x must be a numerical vector\")\n  }\n  #---------------------------End Error Handler----------------------------#\n  lx <- length(x)\n\n  storage <- matrix(rep(0,lx*n), nrow = lx)\n  Pr <- rep(0,length(x))\n\n\n  for(k in 1:lx){\n    for(i in 1:n){\n      storage[k,i]<- sum(rnorm(df)^2)\n    }\n  }\n\n  for(j in 1: lx){\n    Pr[j] <- length(storage[j,][storage[j,] > x[j]])/n\n  }\n\n  if(plot==TRUE){\n    par(mfrow=c(2,1))\n    plot(density(storage[1,]))\n    plot(ecdf(storage[1,]))\n  }\n  return(Pr)\n}\n\n",
+    "created" : 1462959651977.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1670647575",
+    "id" : "F851C49B",
+    "lastKnownWriteTime" : 1464457301,
+    "path" : "C:/Users/hongu/Desktop/University/Statistics/R Code/anything/R/chi.probability.R",
+    "project_path" : "R/chi.probability.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -1,0 +1,18 @@
+{
+    "contents" : "\n#' @title Simulating Buffon's Needles Experiment\n#' @export\n#' @return An estimation of Pi using the famous buffon's experiment\n#' @usage buffon.needle(n=255,l= 2.5, d=3, ind = FALSE, plot= FALSE )\n#' @keywords Estimating the pi, buffon experiment\n#' @description This function takes as arguments the number of needles \\code{n}, the length of needle \\code{l} and\n#' the distance between the lines \\code{d}, then simulate the buffon needle experiment.\n#' @details The idea is to generate two random points (x,k) and (xmax, kmax) represents the points which the needle extends.\n#' Any point (x,k) on the board is uniformly distributed, by the assumption that it is equally likely to hit any point on the board.\n#' At the same time an angle theta is generated from U(0, pi/2). Using this angle the point (xmax,kmax) is generated since xmax = x+l*sin(theta)\n#' and kmax = k + l*cos(theta).\n#'\n#' The board is designed such that there are 5 parallel lines, distance d from each other i.e we have y_1= d, y_2 = 2*d,...,y_5 = 5*d. Every time there is a hit\n#' it satisfies that kmax > y_i > k.\n#' @import graphics\n#' @import stats\n#' @param n the number of needles\n#' @param l the length of the needles\n#' @param d the distance between two lines\n#' @param plot specifies whether the board should be drawn.\n#' @param ind  specicfies whether or not to give a red color to the needles that hit the lines\n#' @author Nguyen Khanh Le Ho \\cr\n#' @examples\n#' buffon.needle(n=2000, l= 2.5 , d= 3 ,  ind = TRUE, plot=TRUE )\n\nbuffon.needle<- function(n=255,l=2.5,d=3, ind = FALSE, plot= FALSE){\n\n  theta<-c()\n  X<-c()\n  K<- c()\n  Kmax<-c()\n  Xmax<- c()\n  hit<- rep(0,n)\n\n  # 1) Draw the board:\n  #-------------------\n  if(plot){\n    Z<- rep(d,(l*20+2))  # Adjusting the board depending on the input of d and l\n    Y<- c(-1:(l*20))\n\n    for(i in 1:5){       # Creating 5 lines distance d from each other\n      if(i > 1){\n        abline(i*d,0, col=\"blue\")\n      }else{\n        plot(Y,Z, col=\"blue\", type= \"l\", xlim = c(0,d*5+l), ylim = c(0,d*5), xaxt=\"n \",ylab = \"\",xlab = \"\"  ,yaxt=\"n\", main = \"Buffon's Needles Experiment\")\n        abline(0,0,col=\"blue\")\n      }\n    }\n  }\n\n  # 2) Simulating a random point (X,K) on the board\n  #    then using this point to calculate the point\n  #    (Xmax, Kmax) which the needle reaches.\n  #------------------------------------------------\n\n  for(i in 1:n){\n    theta[i]<-runif(1,0,pi/2)\n    X[i] <- runif(1,0,d*5)\n    K[i] <- runif(1,0,d*5)\n    Xmax[i] = X[i]+l*sin(theta[i])\n    Kmax[i] = K[i] + l*cos(theta[i])\n\n    # 3) Counting how many needle hit the lines.\n    #---------------------------------------\n    for(j in 1:5){\n      if((K[i]<j*d) && (Kmax[i]>j*d)){\n        hit[i]=1\n      }\n    }\n    # 4) Draw the needles:\n    #------------------\n    if(ind && plot){\n      segments(X[i],K[i],Xmax[i],Kmax[i], col=hit[i]+1)\n    }else if(plot){\n      segments(X[i],K[i],Xmax[i],Kmax[i])\n    }\n\n  }\n  EstP =(2*l*n)/(sum(hit)*d)\n  return(EstP )\n}\n",
+    "created" : 1464716864465.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2954768993",
+    "id" : "C5883874",
+    "lastKnownWriteTime" : 1464801398,
+    "path" : "C:/Users/hongu/Desktop/University/Statistics/R Code/anything/R/buffon.needle.R",
+    "project_path" : "R/buffon.needle.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

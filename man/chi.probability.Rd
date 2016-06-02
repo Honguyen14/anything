@@ -2,8 +2,37 @@
 % Please edit documentation in R/chi.probability.R
 \name{chi.probability}
 \alias{chi.probability}
-\title{This is a title.}
+\title{Calculation the Chi Squared probability.}
 \usage{
-chi.probability(x, df, n = 1)
+chi.probability(x, df = 5, n = 1000, plot = FALSE)
 }
+\arguments{
+\item{x}{specifies the value that should be evaluated in the Chi Square distribution.}
+
+\item{df}{degrees of freedom in the Chi Square distribution}
+
+\item{n}{number of random numbers for evaluating the distribution}
+
+\item{plot}{specifies whether a plot should be created or not}
+}
+\value{
+returns the probability that the \code{Chi} greater than \code{x} (area under the distribution which is greated than \code{x}).
+}
+\description{
+\code{chi.probability} computes the probability which the \code{Chi} of a given degree of freedom is greater than a specified value \code{x}.
+If \code{x} is a vector, in which case the function will return a vector of probabilities of the components of \code{x}. The \code{plot} option if chosen to
+be TRUE, then a plot of the density function of the \code{Chi Squared} with degree of freedom \code{df} will be created.
+}
+\examples{
+chi.probability(x= 5, df = 5, n = 1000, plot = TRUE)
+}
+\author{
+Nguyen Khanh Le Ho \cr
+}
+\keyword{Carlo}
+\keyword{Estimation}
+\keyword{Monte}
+\keyword{chi}
+\keyword{distribution}
+\keyword{simulation}
 

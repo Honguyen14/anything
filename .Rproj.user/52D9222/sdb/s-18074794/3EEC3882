@@ -1,0 +1,18 @@
+{
+    "contents" : "\n#' @title Calculating Chi Squared p-value\n#' @export\n#' @return Returns the Chi Squared test statistic.\n#' @usage chi.test(x, p = NULL,plot= FALSE)\n#' @keywords chi squared test, Chi Statistic\n#' @description This function takes as input a numerical vector/obervations \\code{x}, and a vector of expected probability \\code{p}\n#' then calculate the  \\code{Chi Squared Statistic} based on these information.\n#' @import graphics\n#' @import stats\n#' @param plot specifies whether or not to make barplot of the observed data and the expectation\n#' @param x a numeric vector.\n#' @param p a vector of proability, vector of uniform probability if it is unspecified\n#' @author Nguyen Khanh Le Ho \\cr\n#' @examples\n#' chi.test(cars$speed, p = NULL)\n\n\nchi.test <- function(x , p = NULL, plot=FALSE){\n\n  #-----------------------Error Handler--------------------------#\n\n  if(is.list(x)|| !is.vector(x) || !is.numeric(x)){\n    stop(\"'x' must be a numerical vector\")\n  }\n  if(!is.null(p) && length(p) != length(x)){\n    stop(\" 'x' and 'p' must be of equal length\")\n  }\n  if(!is.null(p) && sum(p)!= 1){\n    stop(\"'p' the probabilities must sum up to 1\")\n  }\n  if(!is.null(p) && length(p[p<0])>0){\n    stop(\"'p' contains negative probabilty\")\n  }\n  if(!is.logical(plot) || length(plot)!= 1){\n    stop(\"'plot' must be either TRUE or FALSE\")\n  }\n\n  #---------------------------------------------------------------#\n\n\n\n  ncat = length(x)\n  total = sum(x)\n  df = ncat - 1\n\n\n\n  if(is.null(p)){\n    p <- 1/ncat\n    Exp = total*p\n    chiT = sum(((x - Exp)^2)/(Exp))\n  }else{\n    Exp = total*p\n    chiT = sum(((x-Exp)^2)/(Exp))\n  }\n\n  if(plot== TRUE){\n    par(mfrow = c(2,1))\n    barplot(x, main = \"Observed\")\n    barplot(Exp, main = \"Expected\")\n  }\n\n  return(chiT)\n\n}\n",
+    "created" : 1464456628544.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4017397103",
+    "id" : "3EEC3882",
+    "lastKnownWriteTime" : 1464804850,
+    "path" : "C:/Users/hongu/Desktop/University/Statistics/R Code/anything/R/chi.test.R",
+    "project_path" : "R/chi.test.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
